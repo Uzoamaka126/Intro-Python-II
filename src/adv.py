@@ -50,16 +50,18 @@ default_player = Player('one', starting_room, 'sword')
 while True:
 
 # * Prints the current room name
-
+    def get_user_current_room():
+        print(default_player.room)
 # * Prints the current description (the textwrap module might be useful here).
+    
 # * Waits for user input and decides what to do.
     def get_user_input():
-        user = input("> Where do you want to go now:")
+        user = input("Where do you want to go now:")
         user = user.split(" ")
         print(user)
         return user
 # If the user enters a cardinal direction, attempt to move to the room there.
-    if(user)
+    if(default_player.room)
 
 # Print an error message if the movement isn't allowed.
 
