@@ -28,6 +28,9 @@ Up to this point, you've gotten your feet wet by working on a bunch of small Pyt
 * Make the player able to carry multiple items
 * Add items to the game that the user can carry around
 * Add `get [ITEM_NAME]` and `drop [ITEM_NAME]` commands to the parser
+figure out if the player wants to move 
+first get the input
+Does the 
 
 ## Specification
 
