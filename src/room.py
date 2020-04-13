@@ -16,4 +16,4 @@ class Room:
         self.items.append(item)
 
     def get_items_from_room(self, item):
-        return getattr(self.item)
+        return getattr(self.items)
