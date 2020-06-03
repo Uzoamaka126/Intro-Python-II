@@ -1,6 +1,7 @@
 from room import Room
 
 # Declare all the rooms
+# using objects, we set the key to an individual name and then the value to an Instance of the Room Class
 
 room = {
     'outside':  Room("Outside Cave Entrance",
@@ -23,52 +24,45 @@ earlier adventurers. The only exit is to the south.""", "water"),
 
 
 # Link rooms together
+# covers the whole movement that is available for the player. If the movement is available for the player, 
+room['outside'].n_to = room['foyer'] #only can move to the north
+room['foyer'].s_to = room['outside'] # from the foyer of 
+room['foyer'].n_to = room['overlook'] # go forward from foyer to overlook
+room['foyer'].e_to = room['narrow'] # From foyer go left  to narrow
+room['overlook'].s_to = room['foyer'] # go right from overlook to foyer
+room['narrow'].w_to = room['foyer'] # go right to foyer from narrow
+room['narrow'].n_to = room['treasure'] # go straight to treasure
+room['treasure'].s_to = room['narrow'] # From treasure, go back to narrow
 
-room['outside'].n_to = room['foyer']
-room['foyer'].s_to = room['outside']
-room['foyer'].n_to = room['overlook']
-room['foyer'].e_to = room['narrow']
-room['overlook'].s_to = room['foyer']
-room['narrow'].w_to = room['foyer']
-room['narrow'].n_to = room['treasure']
-room['treasure'].s_to = room['narrow']
 
-#
-# Main
-destinations = ["n", "s", "w", "e"]
-items = ["sword", "sheath", "water", "bread", "flag"]
-
-from player import Player
 # create a starting room
-starting_room = room['outside']
 direction = input("enter direction")
 
 # Make a new player object that is currently in the 'outside' room.
-default_player = Player('one', starting_room, 'sword')
+from player import Player
+destinations = ["n", "s", "w", "e"]
+items = ["sword", "sheath", "water", "bread", "flag"]
 
 # Write a loop that:
 while True:
 
-# * Prints the current room name
-    def get_user_current_room():
-        print(default_player.room)
-# * Prints the current description (the textwrap module might be useful here).
-    
-# * Waits for user input and decides what to do.
-    def get_user_input():
-        user = input("Where do you want to go now:")
-        user = user.split(" ")
-        print(user)
-        return user
-# If the user enters a cardinal direction, attempt to move to the room there.
-    if(default_player.room)
+# We would want a welcome message for the user who happens to be currently in the outside room
+    starting_room = room['outside']
+    default_player = Player('Traveller', starting_room, 'sword')
+    print(f"Welcome O brave {default_player}")
+    cmd = input('\nChoose n/s/w/e: ')
 
+# Main
+# * Prints the current room name  
+# * Prints the current description (the textwrap module might be useful here).
+# * Waits for user input and decides what to do.
+# If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
+# If the user enters "q", quit the game.
 
 def set_room_details(room):
-    print("Error")
-    print(f"You went: {direction}")
-    print(f"You are currently in: {default_player.room.name}")
+    print("\n-----------------------------------------")
+    print(f"You are currently at the: {default_player.room.name}")
     print(room.description)
     # Make the room be able to hold multiple items
     if len(room.inventory == 0):
@@ -78,4 +72,8 @@ def set_room_details(room):
             print(f"Here, have this item: {item}")
     
 
-# If the user enters "q", quit the game.
+# def get_user_input():
+#         user = input("Where do you want to go now:")
+#         user = user.split(" ")
+#         print(user)
+#         return user
